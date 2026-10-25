@@ -1,0 +1,13 @@
+name: CI Suite
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  python-ci:
+    uses: Danyp-Lab/.github/.github/workflows/reusable-python-ci.yml@main
+    permissions:
+      contents: read
