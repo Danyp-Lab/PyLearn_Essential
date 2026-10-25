@@ -1,10 +1,11 @@
-import arcade
 import os
+
+import arcade
 
 # Importing the necessary classes for the game objects
 from apple import Apple
-from poo import Poo
 from pear import Pear
+from poo import Poo
 from snake import Snake
 
 # Get the current directory where this script is located
@@ -57,8 +58,15 @@ class Game(arcade.Window):
 
         # Display the game over message if the game has ended
         if self.game_over and self.game_started:
-            arcade.draw_text("Game Over", self.width // 2, self.height // 2, arcade.color.RED_ORANGE, 40, bold=True,
-                             anchor_x="center")
+            arcade.draw_text(
+                "Game Over",
+                self.width // 2,
+                self.height // 2,
+                arcade.color.RED_ORANGE,
+                40,
+                bold=True,
+                anchor_x="center",
+            )
 
         # Finish the rendering process
         arcade.finish_render()
@@ -101,13 +109,17 @@ class Game(arcade.Window):
                     self.game_over = True
 
             # Check if the snake has hit the boundaries of the game window
-            if (self.snake.center_x < 0 or self.snake.center_x > self.width or
-                    self.snake.center_y < 0 or self.snake.center_y > self.height):
+            if (
+                self.snake.center_x < 0
+                or self.snake.center_x > self.width
+                or self.snake.center_y < 0
+                or self.snake.center_y > self.height
+            ):
                 self.game_started = True
                 self.game_over = True
 
             # Check if the snake has collided with itself
-            head = {'x': self.snake.center_x, 'y': self.snake.center_y}
+            head = {"x": self.snake.center_x, "y": self.snake.center_y}
             for segment in self.snake.body:
                 if head == segment:
                     self.game_over = True
@@ -130,6 +142,6 @@ class Game(arcade.Window):
 
 
 # The entry point of the program
-if __name__ == '__main__':
+if __name__ == "__main__":
     game = Game()
     arcade.run()

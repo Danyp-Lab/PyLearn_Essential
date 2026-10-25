@@ -24,6 +24,7 @@ class ComplexNumber:
     def __str__(self):
         return f"{self.real} + i{self.image}"
 
+
 def main():
     try:
         real1 = int(input("Enter the real part of the first complex number: "))
@@ -44,6 +45,7 @@ def main():
         print(f"Subtraction: {subtract_result}")
     except ValueError:
         print("You must enter an integer number!")
+
 
 if __name__ == "__main__":
     main()

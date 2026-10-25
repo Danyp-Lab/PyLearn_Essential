@@ -1,5 +1,7 @@
 from datetime import datetime
+
 import pytz
+
 
 class Time:
     def __init__(self, hour, minute, second):
@@ -37,7 +39,7 @@ class Time:
 
     def change_local_time(self):
         current_time = datetime.now()
-        second_timezone = pytz.timezone('America/New_York')
+        second_timezone = pytz.timezone("America/New_York")
         second_time = current_time.astimezone(second_timezone).time()
         second_time = second_time.strftime("%H:%M:%S")
         return second_time
@@ -102,4 +104,3 @@ print(f"First time: {first_time.display()}")
 print(f"Second time: {second_time.display()}")
 print(f"Sum result time: {sum_result_time.display()}")
 print(f"Sub result time: {sub_result_time.display()}")
-

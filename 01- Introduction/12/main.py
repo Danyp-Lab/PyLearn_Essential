@@ -1,10 +1,11 @@
 import os
-from media import *
-from film import Film
-from series import Series
-from documentary import Documentary
-from clip import Clip
 import random
+
+from clip import Clip
+from documentary import Documentary
+from film import Film
+from media import *
+from series import Series
 
 Products = []
 # get current path and add DB path to file_path
@@ -20,11 +21,11 @@ def choice(ch):
         4: lambda: show_info(input("Search: Enter your Media Name: ")),
         5: lambda: advanced_search(
             input("Please enter the minimum duration you want: "),
-            input("Please enter the maximum duration you want: ")
+            input("Please enter the maximum duration you want: "),
         ),
         6: lambda: download(input("Download Trailer: Please enter media name ")),
         7: suggest_random_media,
-        8: lambda: (write_to_database(), exit(0))
+        8: lambda: (write_to_database(), exit(0)),
     }
     action = actions.get(ch, lambda: (print("Invalid input, try again"), show_menu()))
     action()
@@ -39,7 +40,7 @@ def show_menu():
         "Search by Time",
         "Download Trailer",
         "Suggest Media",
-        "Exit"
+        "Exit",
     ]
     for i, option in enumerate(options, 1):
         print(f"{i}- {option}")
@@ -51,11 +52,11 @@ def read_from_database():
         "film": {"class": Film, "attribute": "genre"},
         "series": {"class": Series, "attribute": "num_episodes"},
         "documentary": {"class": Documentary, "attribute": "topic"},
-        "clip": {"class": Clip, "attribute": "category"}
+        "clip": {"class": Clip, "attribute": "category"},
     }
 
     # Open the database file and read each line
-    with open(file_path, 'r') as file:
+    with open(file_path) as file:
         for line in file:
             # Split the line into db_data and strip whitespace
             db_data = [data.strip() for data in line.split(",")]
@@ -82,7 +83,7 @@ def read_from_database():
                     url=db_data[4],
                     duration=db_data[5],
                     casts=db_data[6],
-                    **{unique_attribute: db_data[7]}
+                    **{unique_attribute: db_data[7]},
                 )
 
                 # Add the created media object to the Products list
@@ -107,7 +108,7 @@ def add():
         "film": {"class": Film, "attribute": "genre"},
         "series": {"class": Series, "attribute": "num_episodes"},
         "documentary": {"class": Documentary, "attribute": "topic"},
-        "clip": {"class": Clip, "attribute": "category"}
+        "clip": {"class": Clip, "attribute": "category"},
     }
 
     # Collect common information for all media types
@@ -135,7 +136,7 @@ def add():
         url,
         duration,
         casts,
-        **{unique_attribute: additional_info}
+        **{unique_attribute: additional_info},
     )
 
     # Add the new media object to the global Products list
@@ -150,7 +151,7 @@ def show_edit_menu():
         "3": "edit IMDB score",
         "4": "edit URL",
         "5": "edit duration",
-        "6": "edit Casts"
+        "6": "edit Casts",
     }
 
     for number, action in options.items():
@@ -174,7 +175,7 @@ def edit():
                 "3": ("imdb_score", "Enter new IMDB score: "),
                 "4": ("url", "Enter new URL: "),
                 "5": ("duration", "Enter new duration: "),
-                "6": ("casts", "Enter new casts (separated by &): ")
+                "6": ("casts", "Enter new casts (separated by &): "),
             }
 
             # Add specific options for Film, Series, Documentary, and Clip
@@ -217,7 +218,7 @@ def remove():
 
             # Confirm with the user before deletion
             confirmation = input("⚠️ Are you sure you want to delete this media? (Y/n): ").lower()
-            if confirmation == 'y':
+            if confirmation == "y":
                 Products.remove(product)
                 print(f"Media '{product.name}' has been deleted successfully!✔️")
                 return
@@ -299,7 +300,7 @@ def download(name):
             user_choice = input("Do you want to download this movie? (y/N): ").strip().lower()
 
             # If the user confirms, check if the product is a Film and download
-            if user_choice == 'y':
+            if user_choice == "y":
                 if isinstance(product, Film):
                     product.download()
                     print(f"'{name}' is now downloading.")
@@ -330,11 +331,13 @@ def write_to_database(file_path):
     file_path (str): The path to the database file.
     """
     try:
-        with open(file_path, 'w') as db_file:
+        with open(file_path, "w") as db_file:
             for product in Products:
                 # Prepare the data string based on the product type
-                data = f"{product.type},{product.name},{product.director}," \
-                       f"{product.imdb_score},{product.url},{product.duration},{product.casts}"
+                data = (
+                    f"{product.type},{product.name},{product.director},"
+                    f"{product.imdb_score},{product.url},{product.duration},{product.casts}"
+                )
 
                 # Add type-specific data
                 if isinstance(product, Film):
@@ -351,17 +354,17 @@ def write_to_database(file_path):
 
                 # Write the data to the file
                 db_file.write(data + "\n")
-    except IOError:
+    except OSError:
         print("An error occurred while writing to the database.")
 
 
 # Example usage
-print('Welcome to Py MediaClubStore')
+print("Welcome to Py MediaClubStore")
 # Assume read_from_database() is defined elsewhere and file_path is known
 read_from_database()
-print('Database loaded successfully!✔️')
+print("Database loaded successfully!✔️")
 
 while True:
     show_menu()
-    choice(int(input('Enter your choice: ')))
+    choice(int(input("Enter your choice: ")))
     print("debug console")

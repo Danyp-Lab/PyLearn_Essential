@@ -6,9 +6,9 @@ class Actor:
 
     def __str__(self):
         return f"Name: {self.name}, Age: {self.age}, Gender: {self.gender}"
-    
 
-#test Class:    
+
+# test Class:
 """ 
 actor1 = Actor(name="Tom Hanks", age=65, gender="Male")
 print(actor1)  # This will call the __str__ method and display actor1's details

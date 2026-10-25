@@ -1,9 +1,22 @@
 from termcolor import colored
+
+
 def generate_rug(n):
     rug = [[" "] * n for _ in range(n)]
     num = n // 2
     color_num = 0
-    colors = ['black', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'grey', 'orange', 'pink']
+    colors = [
+        "black",
+        "green",
+        "yellow",
+        "blue",
+        "magenta",
+        "cyan",
+        "white",
+        "grey",
+        "orange",
+        "pink",
+    ]
 
     for i in range(num + 1):
         for j in range(i, n - i):
@@ -19,6 +32,7 @@ def generate_rug(n):
 
     return rug
 
+
 def main():
     try:
         n = int(input("Enter an odd number to create a rug: "))
@@ -32,6 +46,7 @@ def main():
                 print()
     except ValueError:
         print("You must enter an integer number!")
+
 
 if __name__ == "__main__":
     main()

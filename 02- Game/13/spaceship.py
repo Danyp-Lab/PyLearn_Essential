@@ -1,5 +1,6 @@
-import arcade
 import random
+
+import arcade
 
 # Constants for screen dimensions and game settings
 SCREEN_WIDTH, SCREEN_HEIGHT = arcade.get_display_size()

@@ -1,14 +1,15 @@
 # instagram unfollow finder
 # be Aware , this lib is not safe . your account is risk , just use in a dummy account
 # insta lib , Get pass From User Without Showing
-import instaloader
 import getpass
+
+import instaloader
 
 old_followers = []
 new_followers = []
 
 # add oldFollowers to list
-f = open("followers.txt", "r")
+f = open("followers.txt")
 
 for line in f:
     old_followers.append(line)

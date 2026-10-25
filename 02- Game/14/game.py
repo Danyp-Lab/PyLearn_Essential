@@ -1,8 +1,7 @@
 import arcade
-
+from bullet import Bullet
 from enemy import Enemy
 from spaceship import Spaceship
-from bullet import Bullet
 
 
 class Game(arcade.Window):
@@ -82,12 +81,24 @@ class Game(arcade.Window):
         heart_position_x = 10
         heart_position_y = 10
         for i in range(self.lives):
-            arcade.draw_text(heart_symbol, heart_position_x + i * heart_spacing, heart_position_y,
-                             arcade.color.PERSIAN_ROSE, 24)
+            arcade.draw_text(
+                heart_symbol,
+                heart_position_x + i * heart_spacing,
+                heart_position_y,
+                arcade.color.PERSIAN_ROSE,
+                24,
+            )
 
     def draw_game_over(self):
-        arcade.draw_text("Game Over", self.width // 2, self.height // 2, arcade.color.PERSIAN_RED, 50,
-                         anchor_x="center")
+        arcade.draw_text(
+            "Game Over",
+            self.width // 2,
+            self.height // 2,
+            arcade.color.PERSIAN_RED,
+            50,
+            anchor_x="center",
+        )
+
     def on_update(self, delta_time):
         if not self.game_over:
             # Update player's movement

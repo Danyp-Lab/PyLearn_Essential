@@ -6,7 +6,9 @@ operation = FirstNumber = SecondNumber = Number = 0
 # Calculator
 print("Welcome to Calculator v0.01 CLI")
 
-print("Operation List \n 1:- \n 2:+ \n 3:* \n 4:/ \n 5:sqrt \n 6:factorial ,\n 7:sin \n 8:cos \n 9:tan \n 10:cot ")
+print(
+    "Operation List \n 1:- \n 2:+ \n 3:* \n 4:/ \n 5:sqrt \n 6:factorial ,\n 7:sin \n 8:cos \n 9:tan \n 10:cot "
+)
 operation = int(input(" What math operation do you want to do ? (operation number 1...10) "))
 
 # Condition for knowing how many number we need

@@ -21,8 +21,8 @@ print(MultB)
 
 # search between coefficients - LCM
 
-for i in (MultA):
-    for j in (MultB):
+for i in MultA:
+    for j in MultB:
         if i == j:
             if i < LCM:
                 LCM = i

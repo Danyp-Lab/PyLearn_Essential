@@ -1,12 +1,13 @@
-import arcade
 import os
 
+import arcade
 from apple import Apple
-from poo import Poo
 from pear import Pear
+from poo import Poo
 from snake import Snake
 
 current_directory = os.path.dirname(os.path.abspath(__file__))
+
 
 class Game(arcade.Window):
     def __init__(self):
@@ -30,8 +31,12 @@ class Game(arcade.Window):
         self.game_started = False
 
     def find_closest_fruit(self):
-        food_distance = abs(self.food.center_x - self.snake.center_x) + abs(self.food.center_y - self.snake.center_y)
-        pear_distance = abs(self.pear.center_x - self.snake.center_x) + abs(self.pear.center_y - self.snake.center_y)
+        food_distance = abs(self.food.center_x - self.snake.center_x) + abs(
+            self.food.center_y - self.snake.center_y
+        )
+        pear_distance = abs(self.pear.center_x - self.snake.center_x) + abs(
+            self.pear.center_y - self.snake.center_y
+        )
 
         if food_distance <= pear_distance:
             return self.food
@@ -50,7 +55,15 @@ class Game(arcade.Window):
         arcade.draw_text(score_display, 10, self.height - 20, arcade.color.BLACK, 14)
 
         if self.game_over and self.game_started:
-            arcade.draw_text("Game Over", self.width // 2 , self.height // 2, arcade.color.RED, 40, bold=True, anchor_x="center")
+            arcade.draw_text(
+                "Game Over",
+                self.width // 2,
+                self.height // 2,
+                arcade.color.RED,
+                40,
+                bold=True,
+                anchor_x="center",
+            )
 
         arcade.finish_render()
 
@@ -72,7 +85,7 @@ class Game(arcade.Window):
             dy = fruit_y - snake_y
 
             # Normalize the direction vector
-            length = (dx ** 2 + dy ** 2) ** 0.5
+            length = (dx**2 + dy**2) ** 0.5
             if length != 0:
                 dx /= length
                 dy /= length
@@ -105,12 +118,16 @@ class Game(arcade.Window):
                 if self.snake.score <= 0:
                     self.game_over = True
 
-            if (self.snake.center_x < 0 or self.snake.center_x > self.width or
-                self.snake.center_y < 0 or self.snake.center_y > self.height):
+            if (
+                self.snake.center_x < 0
+                or self.snake.center_x > self.width
+                or self.snake.center_y < 0
+                or self.snake.center_y > self.height
+            ):
                 self.game_started = True
                 self.game_over = True
 
-            head = {'x': self.snake.center_x, 'y': self.snake.center_y}
+            head = {"x": self.snake.center_x, "y": self.snake.center_y}
             for segment in self.snake.body:
                 if head == segment:
                     self.game_over = True
@@ -118,6 +135,7 @@ class Game(arcade.Window):
     def on_key_release(self, symbol: int, modifiers: int):
         pass
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     game = Game()
     arcade.run()

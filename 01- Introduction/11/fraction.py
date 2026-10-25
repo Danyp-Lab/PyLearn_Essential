@@ -12,13 +12,19 @@ class Fraction:
     # Function in the Class---->Methods
     def add(self, other_fraction):
         "Adds two fractions and returns the result as a new Fraction object"
-        numerator_after_sum = self.numerator * other_fraction.denominator + other_fraction.numerator * self.denominator
+        numerator_after_sum = (
+            self.numerator * other_fraction.denominator
+            + other_fraction.numerator * self.denominator
+        )
         denominator_after_sum = self.denominator * other_fraction.denominator
         return Fraction(numerator_after_sum, denominator_after_sum).simplify()
 
     def subtract(self, other_fraction):
         "Subtracts two fractions and returns the result as a new Fraction object"
-        numerator_after_difference = self.numerator * other_fraction.denominator - other_fraction.numerator * self.denominator
+        numerator_after_difference = (
+            self.numerator * other_fraction.denominator
+            - other_fraction.numerator * self.denominator
+        )
         denominator_after_difference = self.denominator * other_fraction.denominator
         return Fraction(numerator_after_difference, denominator_after_difference).simplify()
 
@@ -51,26 +57,29 @@ class Fraction:
     def __str__(self):
         "Returns a string representation of the fraction in numerator/denominator format"
         return f"{self.numerator}/{self.denominator}"
-    
+
+
 # Get user input and handle errors gracefully
 while True:
-  try:
-    numerator1 = int(input("Enter the numerator of the first fraction: "))
-    denominator1 = int(input("Enter the denominator of the first fraction (cannot be zero): "))
-    
-    if denominator1 == 0:
-      raise ValueError("Denominator cannot be zero.")
+    try:
+        numerator1 = int(input("Enter the numerator of the first fraction: "))
+        denominator1 = int(input("Enter the denominator of the first fraction (cannot be zero): "))
 
-    numerator2 = int(input("Enter the numerator of the second fraction: "))
-    denominator2 = int(input("Enter the denominator of the second fraction (cannot be zero): "))
+        if denominator1 == 0:
+            raise ValueError("Denominator cannot be zero.")
 
-    if denominator2 == 0:
-      raise ValueError("Denominator cannot be zero.")
+        numerator2 = int(input("Enter the numerator of the second fraction: "))
+        denominator2 = int(input("Enter the denominator of the second fraction (cannot be zero): "))
 
-    break  # Exit the loop if input is valid
+        if denominator2 == 0:
+            raise ValueError("Denominator cannot be zero.")
 
-  except ValueError:
-    print("Invalid input. Please enter integers for numerators and non-zero integers for denominators.")
+        break  # Exit the loop if input is valid
+
+    except ValueError:
+        print(
+            "Invalid input. Please enter integers for numerators and non-zero integers for denominators."
+        )
 
 # Create fraction objects and perform operations
 fraction1 = Fraction(numerator1, denominator1)

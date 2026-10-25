@@ -1,5 +1,6 @@
 import arcade
 
+
 class Snake(arcade.Sprite):
     # Initialize the Snake class
     def __init__(self, game):
@@ -8,14 +9,19 @@ class Snake(arcade.Sprite):
         self.height = 28  # Set the height of the snake
         self.radius = 16  # Set the radius for the snake's head and body parts
         self.center_x = game.width // 2  # Start the snake in the center of the game window (X-axis)
-        self.center_y = game.height // 2  # Start the snake in the center of the game window (Y-axis)
+        self.center_y = (
+            game.height // 2
+        )  # Start the snake in the center of the game window (Y-axis)
         self.color = arcade.color.PINE_GREEN  # Set the color of the snake
         self.change_x = 0  # Initial horizontal movement is set to 0
         self.change_y = 0  # Initial vertical movement is set to 0
         self.speed = 1.5  # Set the speed of the snake
         self.score = 0  # Initialize the score
         self.body = []  # List to store the body part locations
-        self.body_colors = [arcade.color.RED, arcade.color.GREEN]  # List of colors to alternate between for the body
+        self.body_colors = [
+            arcade.color.RED,
+            arcade.color.GREEN,
+        ]  # List of colors to alternate between for the body
 
     # Method for when the snake eats food
     def eat(self, food):
@@ -27,7 +33,7 @@ class Snake(arcade.Sprite):
     # Method to move the snake
     def move(self):
         # Add a new body part at the current head position
-        self.body.append({'x': self.center_x, 'y': self.center_y})
+        self.body.append({"x": self.center_x, "y": self.center_y})
         # Remove the oldest body part if the body is longer than the score allows
         if len(self.body) > self.score * 4:
             self.body.pop(0)
@@ -44,4 +50,4 @@ class Snake(arcade.Sprite):
         # Draw the body segments, alternating between red and green
         for i, part in enumerate(self.body):
             color = self.body_colors[i % 2]  # Choose the color based on the current index
-            arcade.draw_circle_filled(part['x'], part['y'], self.radius, color)
+            arcade.draw_circle_filled(part["x"], part["y"], self.radius, color)

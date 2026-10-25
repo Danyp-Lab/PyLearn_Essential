@@ -1,12 +1,14 @@
 import random
 import tkinter as tk
 
+
 def init_board():
     board = list(range(1, 16)) + [None]
     random.shuffle(board)
     while not is_solvable(board):
         random.shuffle(board)
     return board
+
 
 def is_solvable(board):
     inv_count = 0
@@ -16,6 +18,7 @@ def is_solvable(board):
                 inv_count += 1
     return inv_count % 2 == 0
 
+
 def draw_board(canvas, board):
     canvas.delete("all")
     for i, num in enumerate(board):
@@ -24,6 +27,7 @@ def draw_board(canvas, board):
             y = (i // 4) * 100
             canvas.create_rectangle(x, y, x + 100, y + 100, fill="lightblue")
             canvas.create_text(x + 50, y + 50, text=str(num), font=("Arial", 40))
+
 
 def move_tile(event, canvas, board):
     x, y = event.x // 100, event.y // 100
@@ -35,6 +39,7 @@ def move_tile(event, canvas, board):
                 draw_board(canvas, board)
                 break
 
+
 def main():
     root = tk.Tk()
     root.title("15 Puzzle Game")
@@ -44,6 +49,7 @@ def main():
     draw_board(canvas, board)
     canvas.bind("<Button-1>", lambda event: move_tile(event, canvas, board))
     root.mainloop()
+
 
 if __name__ == "__main__":
     main()

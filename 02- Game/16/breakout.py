@@ -30,16 +30,19 @@ ball.dy = 2
 # Score
 score = 3
 
+
 # Functions to move paddle
 def paddle_left():
     x = paddle.xcor()
     x -= 20
     paddle.setx(x)
 
+
 def paddle_right():
     x = paddle.xcor()
     x += 20
     paddle.setx(x)
+
 
 # Keyboard bindings
 wn.listen()
@@ -76,6 +79,8 @@ while True:
             break
 
     # Paddle and ball collisions
-    if (ball.ycor() < -240 and ball.ycor() > -250) and (ball.xcor() < paddle.xcor() + 50 and ball.xcor() > paddle.xcor() - 50):
+    if (ball.ycor() < -240 and ball.ycor() > -250) and (
+        ball.xcor() < paddle.xcor() + 50 and ball.xcor() > paddle.xcor() - 50
+    ):
         ball.sety(-240)
         ball.dy *= -1

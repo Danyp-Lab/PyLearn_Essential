@@ -1,4 +1,4 @@
-#Not Finished
+# Not Finished
 ArraySize = int(input("Array size :"))
 UserArray = []
 NotSort = False

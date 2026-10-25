@@ -1,5 +1,5 @@
-import qrcode
 import matplotlib.pyplot as plt
+import qrcode
 
 
 def create_qrcode(user_input):
@@ -12,7 +12,7 @@ def create_qrcode(user_input):
 def display_qrcode(qr_image):
     """Display the QR code image using matplotlib."""
     plt.imshow(qr_image)
-    plt.axis('off')  # Remove axes
+    plt.axis("off")  # Remove axes
     plt.show()
 
 

@@ -1,13 +1,12 @@
 import sys
-from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLineEdit, QPushButton, QGridLayout
-from math import sin, cos, tan, log, sqrt
-import numpy as np
+
+from PyQt6.QtWidgets import QApplication, QGridLayout, QLineEdit, QPushButton, QWidget
 
 
 class CalculatorApp(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle('Calculator')
+        self.setWindowTitle("Calculator")
         self.initUI()
 
     def initUI(self):
@@ -20,14 +19,14 @@ class CalculatorApp(QWidget):
 
         # Create buttons
         buttons = {
-            'sin': (1, 0),
-            'cos': (1, 1),
-            'tan': (1, 2),
-            'cot': (1, 3),
-            'log': (2, 0),
-            'sqrt': (2, 1),
-            'C': (2, 2),
-            '=': (2, 3)
+            "sin": (1, 0),
+            "cos": (1, 1),
+            "tan": (1, 2),
+            "cot": (1, 3),
+            "log": (2, 0),
+            "sqrt": (2, 1),
+            "C": (2, 2),
+            "=": (2, 3),
         }
 
         for btnText, pos in buttons.items():
@@ -42,29 +41,29 @@ class CalculatorApp(QWidget):
         # Get the button text
         button_text = self.sender().text()
 
-        if button_text == 'C':
+        if button_text == "C":
             # Clear line edit
             self.line_edit.clear()
-        elif button_text == '=':
+        elif button_text == "=":
             # Calculate result
             try:
                 result = str(eval(self.line_edit.text()))
                 self.line_edit.setText(result)
-            except Exception as e:
-                self.line_edit.setText('Error')
+            except Exception:
+                self.line_edit.setText("Error")
         else:
             # Add function to line edit
             current_text = self.line_edit.text()
-            if button_text == 'cot':
+            if button_text == "cot":
                 # Calculate cotangent
-                function_text = '1/tan'
+                function_text = "1/tan"
             else:
                 function_text = button_text
-            self.line_edit.setText(current_text + function_text + '(')
+            self.line_edit.setText(current_text + function_text + "(")
 
 
 # Run the application
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = QApplication(sys.argv)
     ex = CalculatorApp()
     ex.show()

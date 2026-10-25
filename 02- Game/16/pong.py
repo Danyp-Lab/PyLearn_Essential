@@ -40,26 +40,31 @@ ball.dy = -2
 score_a = 0
 score_b = 0
 
+
 # Functions to move paddles
 def paddle_a_up():
     y = paddle_a.ycor()
     y += 20
     paddle_a.sety(y)
 
+
 def paddle_a_down():
     y = paddle_a.ycor()
     y -= 20
     paddle_a.sety(y)
+
 
 def paddle_b_up():
     y = paddle_b.ycor()
     y += 20
     paddle_b.sety(y)
 
+
 def paddle_b_down():
     y = paddle_b.ycor()
     y -= 20
     paddle_b.sety(y)
+
 
 # Keyboard bindings
 wn.listen()
@@ -101,10 +106,14 @@ while True:
         paddle_b_down()
 
     # Paddle and ball collisions
-    if (ball.xcor() > 240 and ball.xcor() < 250) and (ball.ycor() < paddle_b.ycor() + 50 and ball.ycor() > paddle_b.ycor() - 50):
+    if (ball.xcor() > 240 and ball.xcor() < 250) and (
+        ball.ycor() < paddle_b.ycor() + 50 and ball.ycor() > paddle_b.ycor() - 50
+    ):
         ball.setx(240)
         ball.dx *= -1
 
-    if (ball.xcor() < -240 and ball.xcor() > -250) and (ball.ycor() < paddle_a.ycor() + 50 and ball.ycor() > paddle_a.ycor() - 50):
+    if (ball.xcor() < -240 and ball.xcor() > -250) and (
+        ball.ycor() < paddle_a.ycor() + 50 and ball.ycor() > paddle_a.ycor() - 50
+    ):
         ball.setx(-240)
         ball.dx *= -1

@@ -1,7 +1,8 @@
 # Import the necessary modules
-import arcade  # Used for game development
-import random  # Used to generate random numbers
 import os  # Used to interact with the operating system
+import random  # Used to generate random numbers
+
+import arcade  # Used for game development
 
 # Get the current directory where this script is located
 current_directory = os.path.dirname(os.path.abspath(__file__))

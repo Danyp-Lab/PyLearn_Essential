@@ -1,8 +1,8 @@
 from pytube import YouTube
-from actor import Actor
+
 
 class Media:
-    def __init__(self, type,name, director, imdb_score, url, duration, casts):
+    def __init__(self, type, name, director, imdb_score, url, duration, casts):
         self.type = type
         self.name = name
         self.director = director
@@ -11,14 +11,11 @@ class Media:
         self.duration = duration
         self.casts = casts
 
-
-
-
     def download(self):
         try:
             yt = YouTube(self.url)
             yt.title
-            stream = yt.streams.filter(progressive=True, file_extension='mp4').first()
+            stream = yt.streams.filter(progressive=True, file_extension="mp4").first()
             stream.download()
             print("Download complete!")
         except Exception as e:
